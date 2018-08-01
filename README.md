@@ -41,6 +41,6 @@ On Linux, you might need to run the command as root. i.e. `sudo endorse-cli` to 
 go get -u github.com/soracom/endorse-client-go/...
 cd $GOPATH/src/github.com/soracom/endorse-client-go/endorse
 go test
-cd ../cmd/endorse-client-go
+cd ../cmd/endorse-cli
 go build
 ```
