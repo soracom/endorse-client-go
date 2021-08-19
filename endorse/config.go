@@ -21,11 +21,12 @@ type KeyCacheConfig struct {
 }
 
 type SerialConfig struct {
-	PortName   string
-	BaudRate   uint
-	DataBits   uint
-	StopBits   uint
-	ParityMode ParityMode
+	PortName              string
+	BaudRate              uint
+	DataBits              uint
+	StopBits              uint
+	ParityMode            ParityMode
+	InterCharacterTimeout uint
 }
 
 type ParityMode int

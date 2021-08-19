@@ -24,7 +24,7 @@ func newComm(cfg *SerialConfig) (*Comm, error) {
 		DataBits:              cfg.DataBits,
 		StopBits:              cfg.StopBits,
 		ParityMode:            convertParityMode(cfg.ParityMode),
-		InterCharacterTimeout: 100,
+		InterCharacterTimeout: cfg.InterCharacterTimeout,
 	}
 
 	log("opening comm port: %s", cfg.PortName)
