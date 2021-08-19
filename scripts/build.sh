@@ -68,7 +68,12 @@ function build_for_linux() {
   tdh="$d/cmd/$exe/$tdc" # output directory on host
   container=endorse-cli-build
   docker build -t $container "$d/scripts"
-  docker run -it --rm -v="$d:/src" -e LOCAL_UID="$(id -u "$USER")" -e LOCAL_GID="$(id -g "$USER")" $container sh -c \
+  docker run -it --rm \
+    -e GOCACHE=/src/.go-cache \
+    -e LOCAL_UID="$(id -u "$USER")" \
+    -e LOCAL_GID="$(id -g "$USER")" \
+    -v="$d:/src" \
+    $container sh -c \
     "cd /src/cmd/endorse-cli && \
     GOOS=linux GOARCH=$arch go build -o $tdc/$exe -ldflags='-X main.Version=$VERSION'"
   cd "$tdh" && tar czvf "$dist/$VERSION/${exe}_${VERSION}_linux_${arch}.tar.gz" -- *; cd -
