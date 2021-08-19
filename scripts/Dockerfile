@@ -1,4 +1,7 @@
-FROM golang:1.10.3-stretch
+FROM golang:1.17
 
 RUN apt update -y && \
-    apt install -y pcscd libpcsclite1 libpcsclite-dev
+    apt install -y pcscd libpcsclite1 libpcsclite-dev gosu
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
