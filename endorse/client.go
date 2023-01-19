@@ -175,7 +175,8 @@ func (c *Client) startAKA(imsi string, rand, auts []byte) (*challenge, error) {
 
 	log("status == %d, resp == %s\n", resp.StatusCode, string(respBodyBytes))
 	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusUnauthorized {
-		return nil, errors.Errorf("key agreement url responded with error: %s", resp.Status)
+		errorMessage := extractErrorMessageFromAPIResponse(respBodyBytes)
+		return nil, errors.Errorf("key agreement url responded with error: %s\n%s", resp.Status, errorMessage)
 	}
 
 	var chal challenge
@@ -185,6 +186,21 @@ func (c *Client) startAKA(imsi string, rand, auts []byte) (*challenge, error) {
 	}
 	log("challenge == %+v\n", chal)
 	return &chal, nil
+}
+
+type APIErrorResponse struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+func extractErrorMessageFromAPIResponse(respBody []byte) string {
+	var er APIErrorResponse
+	err := json.Unmarshal(respBody, &er)
+	if err != nil {
+		return "specify -debug option and see details for the error"
+	}
+
+	return er.Message
 }
 
 func (c *Client) finishAKA(keyID string, res []byte) error {

@@ -79,6 +79,7 @@ func tryCommPorts(cfg *Config, detectedCh chan UICCInterface) (int, error) {
 
 func tryCommPort(cfg *Config, portName string, detectedCh chan UICCInterface) {
 	log("trying comm port: %s\n", portName)
+	log("serial port configuration: %#v", cfg.Serial)
 	port, err := newComm(&SerialConfig{
 		PortName:   portName,
 		BaudRate:   cfg.Serial.BaudRate,
