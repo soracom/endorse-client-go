@@ -3,7 +3,7 @@ module github.com/soracom/endorse-client-go
 go 1.19
 
 require (
-	github.com/ebfe/scard v0.0.0-20180726111930-69b75ee5a71f
+	github.com/ebfe/scard v0.0.0-20190212122703-c3d1b1916a95
 	github.com/google/go-cmp v0.2.0
 	github.com/jacobsa/go-serial v0.0.0-20180131005756-15cf729a72d4
 	github.com/mitchellh/go-homedir v0.0.0-20180523094522-3864e76763d9
