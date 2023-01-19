@@ -1,4 +1,4 @@
-FROM golang:1.17
+FROM golang:1.19.5
 
 RUN apt update -y && \
     apt install -y pcscd libpcsclite1 libpcsclite-dev gosu

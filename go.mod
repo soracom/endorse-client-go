@@ -1,6 +1,6 @@
 module github.com/soracom/endorse-client-go
 
-go 1.16
+go 1.19
 
 require (
 	github.com/ebfe/scard v0.0.0-20180726111930-69b75ee5a71f
